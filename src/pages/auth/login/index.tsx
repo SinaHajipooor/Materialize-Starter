@@ -25,8 +25,6 @@ import { options } from 'src/pages/api/auth/options'
 import { getAppVersion } from 'src/lib/auth/auth';
 import { getCurrentJalaliYear } from 'src/helpers/DateHelper'
 
-
-
 interface State {
     password: string
     showPassword: boolean
