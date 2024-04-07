@@ -14,7 +14,8 @@ import { styled, Theme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import MuiMenu, { MenuProps } from '@mui/material/Menu'
 import MuiMenuItem, { MenuItemProps } from '@mui/material/MenuItem'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // ** Third Party Components
 import PerfectScrollbarComponent from 'react-perfect-scrollbar'
