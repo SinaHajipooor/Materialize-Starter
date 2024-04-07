@@ -5,25 +5,34 @@ const path = require('path')
 
 // Remove this if you're not using Fullcalendar features
 const withTM = require('next-transpile-modules')([
-  '@fullcalendar/common',
-  '@fullcalendar/react',
-  '@fullcalendar/daygrid',
-  '@fullcalendar/list',
-  '@fullcalendar/timegrid'
+    '@fullcalendar/common',
+    '@fullcalendar/react',
+    '@fullcalendar/daygrid',
+    '@fullcalendar/list',
+    '@fullcalendar/timegrid'
 ])
 
 module.exports = withTM({
-  trailingSlash: true,
-  reactStrictMode: false,
-  experimental: {
-    esmExternals: false
-  },
-  webpack: config => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      apexcharts: path.resolve(__dirname, './node_modules/apexcharts-clevision')
-    }
+    trailingSlash: true,
+    reactStrictMode: false,
+    experimental: {
+        esmExternals: false
+    },
+    async redirects() {
+        return [
+            {
+                source: '/',
+                destination: '/admin/dashboard',
+                permanent: true,
+            }
+        ]
+    },
+    webpack: config => {
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            apexcharts: path.resolve(__dirname, './node_modules/apexcharts-clevision')
+        }
 
-    return config
-  }
+        return config
+    }
 })
