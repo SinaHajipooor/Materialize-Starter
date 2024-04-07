@@ -15,7 +15,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import MuiMenu, { MenuProps } from '@mui/material/Menu'
 import MuiMenuItem, { MenuItemProps } from '@mui/material/MenuItem'
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // ** Third Party Components
 import PerfectScrollbarComponent from 'react-perfect-scrollbar'
@@ -26,7 +26,7 @@ import { Settings } from 'src/@core/context/settingsContext'
 // ** Custom Components Imports
 import CustomAvatar from 'src/@core/components/mui/avatar'
 import { Icon } from '@iconify/react'
-import { BASE_URL } from 'src/utils/axios'
+import { BASE_URL } from 'src/utils/axios/axios'
 import { useSession } from 'next-auth/react'
 
 export type ShortcutsType = {
