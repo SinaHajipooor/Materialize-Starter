@@ -198,18 +198,18 @@ const LoginV2 = ({ appVersion }: any) => {
                                 justifyContent: 'center'
                             }}
                         >
-                            <img src="/images/Logo.png" height={45} width={45} alt="سامانه مدیریت بایگانی مدارک پزشکی" />
+                            <img src="/images/Logo.png" height={45} width={45} alt="سامانه آزمایشی" />
                             <Typography variant='h6' sx={{ ml: 2, lineHeight: 1, fontWeight: 600, fontSize: '1.2rem !important' }}>
-                                سامانه مدیریت بایگانی مدارک پزشکی
+                                سامانه آزمایشی
                             </Typography>
                         </Box>
                         <Box sx={{ mb: 10, display: 'flex', mt: 20, flexDirection: 'column', alignItems: 'center' }}>
                             {!hidden && (
                                 <>
                                     <Box>
-                                        <img style={{ marginBottom: 20 }} src="/images/Logo.png" height={164} width={164} alt="سامانه مدیریت بایگانی مدارک پزشکی" />
+                                        <img style={{ marginBottom: 20 }} src="/images/Logo.png" height={164} width={164} alt="سامانه آزمایشی" />
                                     </Box>
-                                    <TypographyStyled textAlign='center' variant='h6'>{`سامانه مدیریت بایگانی مدارک پزشکی`}</TypographyStyled>
+                                    <TypographyStyled textAlign='center' variant='h6'>{`سامانه آزمایشی`}</TypographyStyled>
                                     <Typography textAlign='center' variant='body2'>لطفا نام کاربری و رمز عبور خود را وارد کنید</Typography>
                                 </>
                             )}

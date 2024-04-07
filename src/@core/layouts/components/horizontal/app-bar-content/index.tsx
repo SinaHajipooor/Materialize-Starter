@@ -37,9 +37,9 @@ const AppBarContent = (props: Props) => {
             ) : (
                 <StyledLink href='/admin/dashboard'>
 
-                    <img src="/images/Logo.png" height={35} width={35} alt="سامانه مدیریت بایگانی مدارک پزشکی" />
+                    <img src="/images/Logo.png" height={35} width={35} alt="سامانه آزمایشی" />
                     <Typography variant='h6' sx={{ ml: 2, fontWeight: 700, lineHeight: 1.2 }}>
-                        {'سامانه مدیریت بایگانی مدارک پزشکی'}
+                        {'سامانه آزمایشی'}
                     </Typography>
 
                 </StyledLink>

@@ -120,11 +120,11 @@ const App = (props: ExtendedAppProps) => {
                     <ReactQueryDevtools initialIsOpen={false} />
                     <Head>
                         <title>
-                            مدیریت بایگانی مدارک پزشکی
+                            سامانه آزمایشی
                         </title>
                         <meta
-                            name='HAS'
-                            content={`سامانه مدیریت بایگانی مدارک پزشکی`}
+                            name='TEST'
+                            content={`سامانه آزمایشی`}
                         />
                         <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template' />
                         <meta name='viewport' content='initial-scale=1, width=device-width' />

@@ -127,9 +127,9 @@ const VerticalNavHeader = (props: Props) => {
                 userNavMenuBranding(props)
             ) : (
                 <StyledLink href='/'>
-                    {navCollapsed && !navHover ? <img src="/images/Logo.png" height={30} style={{ marginRight: '5px' }} width={40} alt="مدیریت بایگانی مدارک پزشکی" /> : <img src="/images/Logo.png" height={28} width={30} alt="مدیریت بایگانی مدارک پزشکی" />}
+                    {navCollapsed && !navHover ? <img src="/images/Logo.png" height={30} style={{ marginRight: '5px' }} width={40} alt="آزمایشی" /> : <img src="/images/Logo.png" height={28} width={30} alt="آزمایشی" />}
                     <HeaderTitle variant='caption' sx={{ ...menuCollapsedStyles, fontSize: '12px', fontWeight: '600', ...(navCollapsed && !navHover ? {} : { ml: 2 }) }}>
-                        مدیریت بایگانی مدارک پزشکی
+                        آزمایشی
                     </HeaderTitle>
                 </StyledLink>
             )}
