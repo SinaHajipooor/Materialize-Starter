@@ -21,7 +21,6 @@ import VerticalNavHeader from './VerticalNavHeader'
 
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
-import { useSession } from 'next-auth/react'
 
 interface Props {
     navWidth: number
@@ -62,8 +61,6 @@ const StyledBoxForShadow = styled(Box)<BoxProps>(({ theme }) => ({
 const Navigation = (props: Props) => {
     // ** Props
     const { hidden, settings, afterNavMenuContent, beforeNavMenuContent, navMenuContent: userNavMenuContent } = props
-    const session: any = useSession();
-    const permissions = session?.data?.user?.permissions;
 
     // ** States
     const [navHover, setNavHover] = useState<boolean>(false)
@@ -163,7 +160,6 @@ const Navigation = (props: Props) => {
                     ) : (
                         <List className='nav-items' sx={{ pt: 0, '& > :first-child': { mt: '0' } }}>
                             <VerticalNavItems
-                                permissions={permissions}
                                 navHover={navHover}
                                 groupActive={groupActive}
                                 setGroupActive={setGroupActive}

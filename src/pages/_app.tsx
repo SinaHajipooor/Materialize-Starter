@@ -54,7 +54,6 @@ import 'src/iconify-bundle/icons-bundle-react'
 import '../../styles/globals.css'
 import queryClientSetup from 'src/utils/reactQuery/querySetup'
 import NextAuthProvider from 'src/context/NextAuthProvider'
-import { useEffect } from 'react';
 
 
 // ** Extend App Props with Emotion
@@ -92,26 +91,6 @@ const App = (props: ExtendedAppProps) => {
         Component.getLayout ?? (page => <UserLayout contentHeightFixed={contentHeightFixed}>{page}</UserLayout>)
     const setConfig = Component.setConfig ?? undefined
 
-
-    useEffect(() => {
-        const handleContextMenu = (event: any) => {
-            event.preventDefault();
-        };
-
-        const handleKeyDown = (event: any) => {
-            if (event.key === 'F12') {
-                event.preventDefault();
-            }
-        };
-
-        document.body.addEventListener('contextmenu', handleContextMenu);
-        document.addEventListener('keydown', handleKeyDown);
-
-        return () => {
-            document.body.removeEventListener('contextmenu', handleContextMenu);
-            document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, []);
 
     return (
         <NextAuthProvider>

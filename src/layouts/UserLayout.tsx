@@ -65,7 +65,7 @@ const UserLayout = ({ children, contentHeightFixed }: Props) => {
                     // navItems: verticalMenuItems
                 },
                 appBar: {
-                    content: props => (
+                    content: (props: any) => (
                         <VerticalAppBarContent
                             hidden={hidden}
                             settings={settings}

@@ -9,7 +9,6 @@ import themeConfig from 'src/configs/themeConfig'
 
 // ** Menu Components
 import HorizontalNavItems from './HorizontalNavItems'
-import { useSession } from 'next-auth/react'
 
 // ** Types
 interface Props {
@@ -18,11 +17,6 @@ interface Props {
 }
 
 const Navigation = (props: Props) => {
-
-    const session: any = useSession();
-    const permissions = session?.data?.user?.permissions;
-
-
     return (
         <Box
             className='menu-content'
@@ -36,7 +30,7 @@ const Navigation = (props: Props) => {
                 }
             }}
         >
-            <HorizontalNavItems permissions={permissions} {...props} />
+            <HorizontalNavItems {...props} />
         </Box>
     )
 }

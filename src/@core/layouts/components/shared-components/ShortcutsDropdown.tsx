@@ -15,6 +15,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import MuiMenu, { MenuProps } from '@mui/material/Menu'
 import MuiMenuItem, { MenuItemProps } from '@mui/material/MenuItem'
 
+// ** Icon Imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // ** Third Party Components
@@ -27,7 +28,6 @@ import { Settings } from 'src/@core/context/settingsContext'
 import CustomAvatar from 'src/@core/components/mui/avatar'
 import { Icon } from '@iconify/react'
 import { BASE_URL } from 'src/utils/axios/axios'
-import { useSession } from 'next-auth/react'
 
 export type ShortcutsType = {
     url: string
@@ -82,10 +82,6 @@ const ShortcutsDropdown = (props: Props) => {
     // ** Props
     const { shortcuts, settings } = props
 
-    const session: any = useSession();
-    const permissions = session.data?.user?.permissions;
-
-
     // ** States
     const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(null)
 
@@ -96,27 +92,12 @@ const ShortcutsDropdown = (props: Props) => {
     const { direction } = settings
 
     const handleDropdownOpen = (event: SyntheticEvent) => {
-        if (permissions.length) {
-            setAnchorEl(event.currentTarget)
-        }
+        setAnchorEl(event.currentTarget)
     }
 
     const handleDropdownClose = () => {
         setAnchorEl(null)
     }
-
-    const permissionMap: any = {
-        '/admin/membership/admins': 'admin_index',
-        '/admin/membership/doctors': 'doctor_index',
-        '/admin/membership/hospitals': 'organization_index',
-        '/admin/membership/roles': 'role_index',
-        '/admin/membership/permissions': 'permission_index',
-        '/admin/activities': 'activity_log_index',
-        '/systemLog': 'system_log_index'
-    };
-
-    const hasPermission = (permission: any) => permissions?.includes(permission);
-
 
     return (
         <Fragment>
@@ -152,45 +133,37 @@ const ShortcutsDropdown = (props: Props) => {
                         }}
                     >
                         {shortcuts.map(shortcut => {
-                            if (shortcut.title === 'لاگ سیستم' && permissions?.includes('system_log_index')) {
+                            if (shortcut.title === 'لاگ سیستم') {
 
-                                return (
-                                    <Grid
-                                        xs={6}
-                                        item
-                                        key={shortcut.title}
-                                        onClick={handleDropdownClose}
-                                        sx={{ cursor: 'pointer', '&:hover': { backgroundColor: 'action.hover' } }}
-                                    >
-                                        <a style={{ textDecoration: 'none' }} key={shortcut.title} href={`${BASE_URL}/system-log?key=${session?.data?.user?.encrypted_username}`} rel="noreferrer" target='_blank'>
-                                            <Box
-                                                sx={{
-                                                    p: 6,
-                                                    display: 'flex',
-                                                    textAlign: 'center',
-                                                    alignItems: 'center',
-                                                    textDecoration: 'none',
-                                                    flexDirection: 'column',
-                                                    justifyContent: 'center'
-                                                }}
-                                            >
-                                                <CustomAvatar skin='light' color='secondary' sx={{ mb: 2, width: 50, height: 50 }}>
-                                                    <FontAwesomeIcon icon={shortcut.icon} width={18} />
-                                                </CustomAvatar>
-                                                <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>{shortcut.title}</Typography>
-                                                <Typography variant='body2' sx={{ color: 'text.disabled' }}>
-                                                    {shortcut.subtitle}
-                                                </Typography>
-                                            </Box>
-                                        </a>
-                                    </Grid>
-                                )
-                            }
-
-                            const permissionNeeded = permissionMap[shortcut.url];
-
-                            if (permissionNeeded && !hasPermission(permissionNeeded)) {
-                                return null;
+                                return <Grid
+                                    xs={6}
+                                    item
+                                    key={shortcut.title}
+                                    onClick={handleDropdownClose}
+                                    sx={{ cursor: 'pointer', '&:hover': { backgroundColor: 'action.hover' } }}
+                                >
+                                    <a key={shortcut.title} style={{ textDecoration: 'none' }} href={`${BASE_URL}/log-viewer`} rel="noreferrer" target='_blank'>
+                                        <Box
+                                            sx={{
+                                                p: 6,
+                                                display: 'flex',
+                                                textAlign: 'center',
+                                                alignItems: 'center',
+                                                textDecoration: 'none',
+                                                flexDirection: 'column',
+                                                justifyContent: 'center'
+                                            }}
+                                        >
+                                            <CustomAvatar skin='light' color='secondary' sx={{ mb: 2, width: 50, height: 50 }}>
+                                                <FontAwesomeIcon icon={shortcut.icon} width={28} />
+                                            </CustomAvatar>
+                                            <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>{shortcut.title}</Typography>
+                                            <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+                                                {shortcut.subtitle}
+                                            </Typography>
+                                        </Box>
+                                    </a>
+                                </Grid>
                             }
 
                             return (
@@ -216,7 +189,7 @@ const ShortcutsDropdown = (props: Props) => {
                                         }}
                                     >
                                         <CustomAvatar skin='light' color='secondary' sx={{ mb: 2, width: 50, height: 50 }}>
-                                            <FontAwesomeIcon icon={shortcut.icon} width={18} />
+                                            <FontAwesomeIcon icon={shortcut.icon} width={28} />
                                         </CustomAvatar>
                                         <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>{shortcut.title}</Typography>
                                         <Typography variant='body2' sx={{ color: 'text.disabled' }}>

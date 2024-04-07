@@ -1,11 +1,14 @@
 // ** Type Import
-import { IconProps } from '@iconify/react'
+import { Icon, IconProps } from '@iconify/react'
 
 // ** Custom Icon Import
-import Icon from 'src/@core/components/icon'
+// import Icon from 'src/@core/components/icon'
 
 const UserIcon = ({ icon, ...rest }: IconProps) => {
-  return <Icon icon={icon} {...rest} />
+
+    return <Icon icon={icon} {...rest} height={20} />
+
+    //     return <FontAwesomeIcon icon={icon} {...rest} />
 }
 
 export default UserIcon

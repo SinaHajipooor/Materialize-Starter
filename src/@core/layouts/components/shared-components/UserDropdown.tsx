@@ -23,7 +23,7 @@ import { Settings } from 'src/@core/context/settingsContext'
 import Link from 'next/link'
 import { signOut, useSession } from 'next-auth/react'
 import { logout } from 'src/lib/auth/auth'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 
 interface Props {
     settings: Settings
@@ -50,7 +50,6 @@ const UserDropdown = (props: Props) => {
     const sessions: any = useSession();
 
 
-
     // ** Vars
     const { direction } = settings
 
@@ -65,11 +64,25 @@ const UserDropdown = (props: Props) => {
         setAnchorEl(null)
     }
 
+    const styles = {
+        py: 2,
+        px: 4,
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        color: 'text.primary',
+        textDecoration: 'none',
+        '& svg': {
+            mr: 2,
+            fontSize: '1.375rem',
+            color: 'text.primary'
+        }
+    }
 
     const [isLoading, setIsLoading] = useState(false);
 
     const handleLogout = async () => {
-        setIsLoading(true)
+        setIsLoading(true);
         const response = await logout(sessions?.data?.myToken);
         if (response) {
             await signOut({ redirect: false });
@@ -79,14 +92,11 @@ const UserDropdown = (props: Props) => {
             router.replace(`/auth/login?returnUrl=${returnUrl}`, undefined, { shallow: true });
             handleDropdownClose();
             setIsLoading(false);
+        } else {
+            setIsLoading(false);
+            toast.error('امکان خروج از حساب وجود ندارد');
         }
-        else {
-            setIsLoading(false)
-            toast.error('امکان خروج از حساب وجود ندارد')
-        }
-    }
-
-
+    };
 
 
 
@@ -103,10 +113,10 @@ const UserDropdown = (props: Props) => {
                 }}
             >
                 <Avatar
-                    alt={sessions?.data?.user?.admin?.first_name}
+                    alt='John Doe'
                     onClick={handleDropdownOpen}
                     sx={{ width: 32, height: 32 }}
-                    src={sessions?.data?.user?.admin?.image}
+                    src={sessions.data?.user?.user?.image}
                 />
             </Badge>
             <Menu
@@ -119,7 +129,7 @@ const UserDropdown = (props: Props) => {
             >
                 <Box sx={{ pt: 2, pb: 3, px: 4 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Link href='/admin/profile' onClick={() => {
+                        <Link href='/profile' onClick={() => {
                             handleDropdownClose()
                         }}>
                             <Badge
@@ -130,26 +140,32 @@ const UserDropdown = (props: Props) => {
                                     horizontal: 'right'
                                 }}
                             >
-                                <Avatar alt={sessions?.data?.user?.admin?.first_name ?? ''} src={sessions?.data?.user?.admin?.image} sx={{ width: '2.5rem', height: '2.5rem' }} />
+                                <Avatar alt='John Doe' src={sessions.data?.user?.user?.image} sx={{ width: '2.5rem', height: '2.5rem' }} />
                             </Badge>
                         </Link>
                         <Box sx={{ display: 'flex', ml: 3, alignItems: 'flex-start', flexDirection: 'column' }}>
                             <Link style={{ textDecoration: 'none' }} onClick={() => {
                                 handleDropdownClose()
-                            }} href='/admin/profile'><Typography sx={{ fontWeight: 700 }} variant='body1'>
-                                    {sessions?.data?.user?.admin?.first_name} {sessions?.data?.user?.admin?.last_name}
+                            }} href='/profile'><Typography sx={{ fontWeight: 600 }}>
+                                    {sessions.data?.user?.user?.first_name} {sessions?.data?.user?.user?.last_name}
                                 </Typography>
                             </Link>
-                            <Typography mt={1} fontWeight={500} sx={{ fontSize: '0.7rem' }}>
-                                {sessions?.data?.user?.admin?.organization?.name}
-                            </Typography>
-                            <Typography mt={1} variant='caption' sx={{ fontSize: '0.7rem', color: 'text.disabled' }}>
-                                {sessions?.data?.user?.admin?.roles?.map((role: any) => role?.title)}
+                            <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
+                                ادمین
                             </Typography>
                         </Box>
                     </Box>
                 </Box>
                 <Divider sx={{ mt: '0 !important' }} />
+                <MenuItem sx={{ p: 0 }} href='/profile' LinkComponent={Link} onClick={() => {
+                    handleDropdownClose()
+                    router.push('/profile')
+                }}>
+                    <Box sx={styles}>
+                        <Icon icon='mdi:account-outline' />
+                        پروفایل من
+                    </Box>
+                </MenuItem>
                 <MenuItem
                     disabled={isLoading}
                     onClick={handleLogout}

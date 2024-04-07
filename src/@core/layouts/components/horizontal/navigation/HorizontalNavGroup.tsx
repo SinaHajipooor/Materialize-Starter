@@ -39,7 +39,6 @@ import CanViewNavGroup from 'src/layouts/components/acl/CanViewNavGroup'
 // ** Utils
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 import { hasActiveChild } from 'src/@core/layouts/utils'
-import { useSession } from 'next-auth/react'
 
 interface Props {
     item: NavGroup
@@ -91,8 +90,6 @@ const HorizontalNavGroup = (props: Props) => {
     // ** Hooks & Vars
     const theme = useTheme()
     const router = useRouter()
-    const session: any = useSession();
-    const permissions = session?.data?.user?.permissions;
     const currentURL = router.asPath
     const { skin, direction } = settings
     const { navSubItemIcon, menuTextTruncate, horizontalMenuToggle, horizontalMenuAnimation } = themeConfig
@@ -266,7 +263,7 @@ const HorizontalNavGroup = (props: Props) => {
                                             : { boxShadow: 4 })
                                     }}
                                 >
-                                    <HorizontalNavItems {...props} hasParent horizontalNavItems={item.children} permissions={permissions} />
+                                    <HorizontalNavItems {...props} hasParent horizontalNavItems={item.children} />
                                 </NavigationMenu>
                             </Box>
                         </AnimationWrapper>

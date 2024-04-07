@@ -1,21 +1,13 @@
-// ** MUI Imports
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
-
-// ** Icon Imports
-import Icon from 'src/@core/components/icon'
-
-// ** Type Import
 import { Settings } from 'src/@core/context/settingsContext'
-
-// ** Components
 import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
+import { Icon } from '@iconify/react';
 import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
 import NotificationDropdown, {
     NotificationsType
 } from 'src/@core/layouts/components/shared-components/NotificationDropdown'
-import ShortcutsDropdown, { ShortcutsType } from 'src/@core/layouts/components/shared-components/ShortcutsDropdown'
-import { faHospital, faKey, faNewspaper, faShieldHalved, faUserNurse, faUserTie } from '@fortawesome/free-solid-svg-icons'
+import ShortcutsDropdown from 'src/@core/layouts/components/shared-components/ShortcutsDropdown'
 
 interface Props {
     hidden: boolean
@@ -69,66 +61,68 @@ const notifications: NotificationsType[] = [
     }
 ]
 
+const shortcuts: any = [
+    {
+        title: 'مدیران',
+        url: '/admin/membership/admins',
+        subtitle: 'مدیریت کاربران مدیر',
+        icon: "flat-color-icons:manager"
+    },
+    {
+        title: 'پزشکان',
+        url: '/admin/membership/doctors',
+        subtitle: 'مدیریت پزشکان',
+        icon: "fontisto:doctor"
+    },
 
+    {
+        title: 'سازمان ها',
+        url: '/admin/membership/organizations/',
+        subtitle: 'مدیریت سازمان ها',
+        icon: "flat-color-icons:organization"
+    },
+    {
+        title: 'بیمارستان ها',
+        url: '/admin/membership/hospitals/',
+        subtitle: 'مدیریت بیمارستان ها',
+        icon: "twemoji:hospital"
+    },
+    {
+        url: '/admin/membership/roles',
+        title: 'نقش ها',
+        icon: "octicon:key-24",
+        subtitle: 'مدیریت نقش ها'
+    },
+    {
+        icon: "solar:shield-outline",
+        url: '/admin/membership/permissions',
+        title: 'مجوز ها',
+        subtitle: 'مدیریت مجوز ها',
 
-
+    },
+    {
+        title: 'فعالیت ها',
+        icon: "devicon:githubactions",
+        subtitle: 'گزارش فعالیت کاربران',
+        url: '/admin/membership/activities'
+    },
+    {
+        title: 'لاگ سیستم',
+        icon: "octicon:log-24",
+        subtitle: 'مدیریت لاگ های سیستم',
+        url: '/admin/activities'
+    },
+    {
+        title: 'سرور‌های خارجی',
+        url: '/admin/membership/externalServers/',
+        subtitle: 'مدیریت سرور‌های خارجی',
+        icon: "ion:server"
+    },
+]
 
 const AppBarContent = (props: Props) => {
-
-
     // ** Props
-    const { hidden, settings, saveSettings, toggleNavVisibility } = props;
-
-
-    const shortcuts: ShortcutsType[] = [
-        {
-            title: 'مدیران',
-            url: '/admin/membership/admins',
-            subtitle: 'فهرست مدیران',
-            icon: faUserTie
-        },
-        {
-            title: 'پزشکان',
-            url: '/admin/membership/doctors',
-            subtitle: 'فهرست پزشکان',
-            icon: faUserNurse
-        },
-        {
-            title: 'بیمارستان ها',
-            url: '/admin/membership/hospitals',
-            subtitle: 'فهرست بیمارستان ها',
-            icon: faHospital
-        },
-        {
-            title: 'لاگ سیستم',
-            icon: faNewspaper,
-            subtitle: 'مدیریت لاگ های سیستم',
-            url: '/systemLog'
-        },
-        {
-            url: '/admin/membership/roles',
-            title: 'نقش ها',
-            icon: faShieldHalved,
-            subtitle: 'فهرست نقش ها'
-        },
-        {
-            url: '/admin/membership/permissions',
-            title: 'مجوزها',
-            subtitle: 'فهرست مجوزها',
-            icon: faKey
-        },
-
-
-        // {
-        //     title: 'فعالیت ها',
-        //     icon: "devicon:githubactions",
-        //     subtitle: 'گزارش فعالیت کاربران',
-        //     url: ''
-        // },
-
-
-    ]
-
+    const { hidden, settings, saveSettings, toggleNavVisibility } = props
 
     return (
         <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -140,13 +134,14 @@ const AppBarContent = (props: Props) => {
                 ) : null}
                 {/* <Autocomplete hidden={hidden} settings={settings} /> */}
             </Box>
-            <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }
+            }>
                 <ModeToggler settings={settings} saveSettings={saveSettings} />
-                <NotificationDropdown settings={settings} notifications={notifications} />
                 <ShortcutsDropdown settings={settings} shortcuts={shortcuts} />
+                <NotificationDropdown settings={settings} notifications={notifications} />
                 <UserDropdown settings={settings} />
             </Box>
-        </Box>
+        </Box >
     )
 }
 
