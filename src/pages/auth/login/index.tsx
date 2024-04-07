@@ -22,7 +22,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FormHelperText, Grid, Link, } from '@mui/material'
 import { getServerSession } from 'next-auth'
 import { options } from 'src/pages/api/auth/options'
-import { getAppVersion } from 'src/lib/auth/auth';
+import { getAppVersion } from 'src/lib/utils/version';
 import { getCurrentJalaliYear } from 'src/helpers/DateHelper'
 
 interface State {
