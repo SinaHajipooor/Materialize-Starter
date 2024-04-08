@@ -63,7 +63,6 @@ type ExtendedAppProps = AppProps & {
 }
 
 
-
 const clientSideEmotionCache = createEmotionCache()
 
 // ** Pace Loader
