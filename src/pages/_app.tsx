@@ -18,8 +18,6 @@ import { ToastContainer } from 'react-toastify';
 
 import themeConfig from 'src/configs/themeConfig'
 
-// ** Fake-DB Import
-import 'src/@fake-db'
 
 
 // ** Component Imports
@@ -30,11 +28,9 @@ import WindowWrapper from 'src/@core/components/window-wrapper'
 
 // ** Contexts
 import { QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext'
 
-// ** Styled Components
 
 // ** Utils Imports
 import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
@@ -95,7 +91,6 @@ const App = (props: ExtendedAppProps) => {
         <NextAuthProvider>
             <QueryClientProvider client={queryClientSetup}>
                 <CacheProvider value={emotionCache}>
-                    <ReactQueryDevtools initialIsOpen={false} />
                     <Head>
                         <title>
                             سامانه آزمایشی

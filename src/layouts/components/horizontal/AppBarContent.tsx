@@ -8,7 +8,7 @@ import NotificationDropdown, {
     NotificationsType
 } from 'src/@core/layouts/components/shared-components/NotificationDropdown'
 import ShortcutsDropdown from 'src/@core/layouts/components/shared-components/ShortcutsDropdown'
-import { faBuilding, faChartLine, faDatabase, faHospital, faKey, faNewspaper, faShieldHalved, faUserNurse, faUserTie } from '@fortawesome/free-solid-svg-icons'
+import { faBuilding, faKey, faShieldHalved, faUserTie } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
     hidden: boolean
@@ -70,24 +70,12 @@ const shortcuts: any = [
         icon: faUserTie
     },
     {
-        title: 'پزشکان',
-        url: '/admin/membership/doctors',
-        subtitle: 'مدیریت پزشکان',
-        icon: faUserNurse
-    },
-
-    {
         title: 'سازمان ها',
         url: '/admin/membership/organizations/',
         subtitle: 'مدیریت سازمان ها',
         icon: faBuilding
     },
-    {
-        title: 'بیمارستان ها',
-        url: '/admin/membership/hospitals/',
-        subtitle: 'مدیریت بیمارستان ها',
-        icon: faHospital
-    },
+
     {
         url: '/admin/membership/roles',
         title: 'نقش ها',
@@ -100,24 +88,6 @@ const shortcuts: any = [
         title: 'مجوز ها',
         subtitle: 'مدیریت مجوز ها',
 
-    },
-    {
-        title: 'فعالیت ها',
-        icon: faChartLine,
-        subtitle: 'گزارش فعالیت کاربران',
-        url: '/admin/membership/activities'
-    },
-    {
-        title: 'لاگ سیستم',
-        icon: faNewspaper,
-        subtitle: 'مدیریت لاگ های سیستم',
-        url: '/admin/activities'
-    },
-    {
-        title: 'سرور‌های خارجی',
-        url: '/admin/membership/externalServers/',
-        subtitle: 'مدیریت سرور‌های خارجی',
-        icon: faDatabase
     },
 ]
 

@@ -108,9 +108,9 @@ const AppBarContent = (props: Props) => {
                             </linearGradient>
                         </defs>
                     </svg> */}
-                    <img style={{ marginBottom: 20 }} src="/images/favicon.png" height={40} width={40} alt="سامانه نظارت بر درمان" />
+                    <img style={{ marginBottom: 5 }} src="/images/favicon.png" height={40} width={40} alt="سامانه تست" />
                     <Typography variant='h6' sx={{ ml: 2, fontWeight: 700, lineHeight: 1.2 }}>
-                        {'سامانه نظارت بر درمان'}
+                        سامانه تست
                     </Typography>
 
                 </StyledLink>

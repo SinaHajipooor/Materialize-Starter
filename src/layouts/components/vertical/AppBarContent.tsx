@@ -68,12 +68,6 @@ const shortcuts: any = [
         subtitle: 'مدیریت کاربران مدیر',
         icon: "flat-color-icons:manager"
     },
-    {
-        title: 'پزشکان',
-        url: '/admin/membership/doctors',
-        subtitle: 'مدیریت پزشکان',
-        icon: "fontisto:doctor"
-    },
 
     {
         title: 'سازمان ها',
@@ -81,12 +75,7 @@ const shortcuts: any = [
         subtitle: 'مدیریت سازمان ها',
         icon: "flat-color-icons:organization"
     },
-    {
-        title: 'بیمارستان ها',
-        url: '/admin/membership/hospitals/',
-        subtitle: 'مدیریت بیمارستان ها',
-        icon: "twemoji:hospital"
-    },
+
     {
         url: '/admin/membership/roles',
         title: 'نقش ها',
@@ -100,24 +89,7 @@ const shortcuts: any = [
         subtitle: 'مدیریت مجوز ها',
 
     },
-    {
-        title: 'فعالیت ها',
-        icon: "devicon:githubactions",
-        subtitle: 'گزارش فعالیت کاربران',
-        url: '/admin/membership/activities'
-    },
-    {
-        title: 'لاگ سیستم',
-        icon: "octicon:log-24",
-        subtitle: 'مدیریت لاگ های سیستم',
-        url: '/admin/activities'
-    },
-    {
-        title: 'سرور‌های خارجی',
-        url: '/admin/membership/externalServers/',
-        subtitle: 'مدیریت سرور‌های خارجی',
-        icon: "ion:server"
-    },
+
 ]
 
 const AppBarContent = (props: Props) => {

@@ -11,7 +11,6 @@ import { Settings } from 'src/@core/context/settingsContext'
 // ** Custom Components Imports
 import Translations from 'src/layouts/components/Translations'
 
-// import CanViewNavSectionTitle from 'src/layouts/components/acl/CanViewNavSectionTitle'
 
 interface Props {
     navHover: boolean
@@ -69,7 +68,6 @@ const VerticalNavSectionTitle = (props: Props) => {
 
     return (
 
-        //     <CanViewNavSectionTitle navTitle={item}>
         <ListSubheader
             className='nav-section-title'
             sx={{
@@ -102,7 +100,6 @@ const VerticalNavSectionTitle = (props: Props) => {
             </Divider>
         </ListSubheader>
 
-        //     </CanViewNavSectionTitle>
     )
 }
 

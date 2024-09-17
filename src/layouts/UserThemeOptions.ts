@@ -4,7 +4,7 @@ import { ThemeOptions } from '@mui/system'
 
 
 const myFonts = {
-    //     name: 'IRANSans',
+    name: 'IRANSans',
     src: [
         {
             path: '/fonts/iransans/IRANSansWeb.eot',

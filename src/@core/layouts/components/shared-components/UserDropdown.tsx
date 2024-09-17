@@ -22,8 +22,9 @@ import Icon from 'src/@core/components/icon'
 import { Settings } from 'src/@core/context/settingsContext'
 import Link from 'next/link'
 import { signOut, useSession } from 'next-auth/react'
-import { logout } from 'src/lib/auth/auth'
-import toast from 'react-hot-toast'
+import { logout } from '../../../../libs/auth/auth'
+import { Button } from '@mui/material'
+import { toast } from 'react-toastify'
 
 interface Props {
     settings: Settings
@@ -83,13 +84,12 @@ const UserDropdown = (props: Props) => {
 
     const handleLogout = async () => {
         setIsLoading(true);
-        const response = await logout(sessions?.data?.myToken);
+        const response = await logout();
         if (response) {
             await signOut({ redirect: false });
 
             // Store the current URL (or the one you want to return to) as a query parameter
-            const returnUrl = encodeURIComponent(window.location.pathname);
-            router.replace(`/auth/login?returnUrl=${returnUrl}`, undefined, { shallow: true });
+            router.replace(`/landing`, undefined, { shallow: true });
             handleDropdownClose();
             setIsLoading(false);
         } else {
@@ -97,6 +97,8 @@ const UserDropdown = (props: Props) => {
             toast.error('امکان خروج از حساب وجود ندارد');
         }
     };
+
+    const userName = sessions.data?.user?.user?.first_name + ' ' + sessions.data?.user?.user?.last_name
 
 
 
@@ -115,7 +117,7 @@ const UserDropdown = (props: Props) => {
                 <Avatar
                     alt='John Doe'
                     onClick={handleDropdownOpen}
-                    sx={{ width: 32, height: 32 }}
+                    sx={{ width: 35, height: 35 }}
                     src={sessions.data?.user?.user?.image}
                 />
             </Badge>
@@ -123,13 +125,13 @@ const UserDropdown = (props: Props) => {
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
                 onClose={() => handleDropdownClose()}
-                sx={{ '& .MuiMenu-paper': { width: 230, mt: 4 } }}
+                sx={{ '& .MuiMenu-paper': { width: 220, mt: 4 } }}
                 anchorOrigin={{ vertical: 'bottom', horizontal: direction === 'ltr' ? 'right' : 'left' }}
                 transformOrigin={{ vertical: 'top', horizontal: direction === 'ltr' ? 'right' : 'left' }}
             >
                 <Box sx={{ pt: 2, pb: 3, px: 4 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Link href='/profile' onClick={() => {
+                        <Link href='/admin/base/profile' onClick={() => {
                             handleDropdownClose()
                         }}>
                             <Badge
@@ -146,34 +148,45 @@ const UserDropdown = (props: Props) => {
                         <Box sx={{ display: 'flex', ml: 3, alignItems: 'flex-start', flexDirection: 'column' }}>
                             <Link style={{ textDecoration: 'none' }} onClick={() => {
                                 handleDropdownClose()
-                            }} href='/profile'><Typography sx={{ fontWeight: 600 }}>
-                                    {sessions.data?.user?.user?.first_name} {sessions?.data?.user?.user?.last_name}
+                            }} href='/admin/base/profile'><Typography variant='body2' color={settings.mode === 'dark' ? 'white' : "black"}>
+                                    {sessions?.status === 'authenticated' ? userName : ''}
                                 </Typography>
                             </Link>
-                            <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
-                                ادمین
+                            <Typography mt={1} variant='body1' sx={{ fontSize: '0.65rem' }}>
+                                {sessions.data?.user?.user?.organization?.name}
+                            </Typography>
+                            <Typography mt={1} variant='caption' sx={{ fontSize: '0.6rem' }}>
+                                {sessions.data?.user?.user?.roles?.map((role: any) => `${role?.title}`).join(' - ')}
                             </Typography>
                         </Box>
                     </Box>
                 </Box>
                 <Divider sx={{ mt: '0 !important' }} />
-                <MenuItem sx={{ p: 0 }} href='/profile' LinkComponent={Link} onClick={() => {
+                <MenuItem sx={{ p: 0 }} href='/admin/base/profile' LinkComponent={Link} onClick={() => {
                     handleDropdownClose()
-                    router.push('/profile')
+                    router.push('/admin/base/profile')
                 }}>
                     <Box sx={styles}>
-                        <Icon icon='mdi:account-outline' />
-                        پروفایل من
+                        <Icon icon='system-uicons:user-male' height={19} />
+                        <Typography ml={1} variant='body1' fontSize={12}>
+                            پروفایل
+                        </Typography>
                     </Box>
                 </MenuItem>
-                <MenuItem
-                    disabled={isLoading}
-                    onClick={handleLogout}
-                    sx={{ py: 2, '& svg': { mr: 2, fontSize: '1.375rem', color: 'text.primary' } }}
-                >
-                    <Icon icon='mdi:logout-variant' />
-                    خروج
-                </MenuItem>
+                <Box display='flex' justifyContent='center' pl={2} pr={2} mt={3} mb={2}>
+                    <Button
+                        fullWidth
+                        disabled={isLoading}
+                        variant='contained'
+                        color='error'
+                        size='small'
+                        endIcon={<Icon icon="mdi:logout" height={15} />}
+                        onClick={handleLogout}
+                        sx={{ '& .MuiButton-endIcon': { marginInlineStart: 1.5 }, fontFamily: 'inherit' }}
+                    >
+                        خروج
+                    </Button>
+                </Box>
             </Menu>
         </Fragment>
     )
