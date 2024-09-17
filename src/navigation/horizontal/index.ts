@@ -1,13 +1,7 @@
 // ** Type import
 import { HorizontalNavItemsType } from 'src/@core/layouts/types'
+import { ADMIN_ROUTES } from 'src/constants/AdminRoutes'
 
-const navigation = (): HorizontalNavItemsType => [
-    {
-        title: 'داشبورد',
-        path: '/admin/dashboard',
-        icon: 'mdi:view-dashboard-outline',
-    },
-
-]
+const navigation = (): HorizontalNavItemsType => ADMIN_ROUTES
 
 export default navigation

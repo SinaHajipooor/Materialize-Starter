@@ -8,6 +8,7 @@ import NotificationDropdown, {
     NotificationsType
 } from 'src/@core/layouts/components/shared-components/NotificationDropdown'
 import ShortcutsDropdown from 'src/@core/layouts/components/shared-components/ShortcutsDropdown'
+import { SHORTCUTS } from 'src/constants/Shortcuts';
 
 interface Props {
     hidden: boolean
@@ -61,36 +62,7 @@ const notifications: NotificationsType[] = [
     }
 ]
 
-const shortcuts: any = [
-    {
-        title: 'مدیران',
-        url: '/admin/membership/admins',
-        subtitle: 'مدیریت کاربران مدیر',
-        icon: "flat-color-icons:manager"
-    },
 
-    {
-        title: 'سازمان ها',
-        url: '/admin/membership/organizations/',
-        subtitle: 'مدیریت سازمان ها',
-        icon: "flat-color-icons:organization"
-    },
-
-    {
-        url: '/admin/membership/roles',
-        title: 'نقش ها',
-        icon: "octicon:key-24",
-        subtitle: 'مدیریت نقش ها'
-    },
-    {
-        icon: "solar:shield-outline",
-        url: '/admin/membership/permissions',
-        title: 'مجوز ها',
-        subtitle: 'مدیریت مجوز ها',
-
-    },
-
-]
 
 const AppBarContent = (props: Props) => {
     // ** Props
@@ -109,7 +81,7 @@ const AppBarContent = (props: Props) => {
             <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }
             }>
                 <ModeToggler settings={settings} saveSettings={saveSettings} />
-                <ShortcutsDropdown settings={settings} shortcuts={shortcuts} />
+                <ShortcutsDropdown settings={settings} shortcuts={SHORTCUTS} />
                 <NotificationDropdown settings={settings} notifications={notifications} />
                 <UserDropdown settings={settings} />
             </Box>

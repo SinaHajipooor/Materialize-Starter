@@ -8,7 +8,7 @@ const FooterContent = () => {
 
 
     const footerText = 'تمامی حقوق برای ';
-    const linkText = 'شرکت دانش بنیان فاواگستر سپهر  ';
+    const linkText = 'شرکت دانش بنیان فلان  ';
     const currentYear = getCurrentJalaliYear()
 
 
