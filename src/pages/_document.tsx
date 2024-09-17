@@ -15,14 +15,15 @@ class CustomDocument extends Document {
         return (
             <Html lang='en'>
                 <Head>
-                    <link rel='preconnect' href='https://fonts.googleapis.com' />
-                    <link rel='preconnect' href='https://fonts.gstatic.com' />
                     <link rel='apple-touch-icon' sizes='180x180' href='/images/apple-touch-icon.png' />
                     <link rel='shortcut icon' href='/images/Logo.png' sizes='80px' />
-                    <link rel='preload' href='/fonts/iransans/IRANSansWeb.eot' as='font' crossOrigin='anonymous' />
-                    <link rel='preload' href='/fonts/iransans/IRANSansWeb.ttf' as='font' crossOrigin='anonymous' />
-                    <link rel='preload' href='/fonts/iransans/IRANSansWeb.woff' as='font' crossOrigin='anonymous' />
-                    <link rel='preload' href='/fonts/iransans/IRANSansWeb(FaNum).woff' as='font' crossOrigin='anonymous' />
+                    <link href='/fonts/iransans-pro/IRANSansXFaNum-Medium.ttf' as='font' crossOrigin='anonymous' />
+                    <link href='/fonts/iransans-pro/IRANSansXFaNum-Medium.ttf' as='font' crossOrigin='anonymous' />
+                    <link href='/fonts/iransans-pro/IRANSansXFaNum-Bold.ttf' as='font' crossOrigin='anonymous' />
+                    <link href='/fonts/iransans-pro/IRANSansXFaNum-Black.ttf' as='font' crossOrigin='anonymous' />
+                    <link href='/fonts/iransans-pro/IRANSansXFaNum-Heavy.ttf' as='font' crossOrigin='anonymous' />
+                    <link href='/fonts/iransans-pro/IRANSansXFaNum-Light.ttf' as='font' crossOrigin='anonymous' />
+                    <link href='/fonts/iransans-pro/IRANSansXFaNum-Thin.ttf' as='font' crossOrigin='anonymous' />
                 </Head>
                 <body>
                     <Main />

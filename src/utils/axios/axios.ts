@@ -1,25 +1,43 @@
 import axios from 'axios';
+import { getSession } from 'next-auth/react';
+import https from 'https'
 
-// import https from 'https'
-
-const BASE_API_URL = 'http://192.168.2.102:81/api';
-export const BASE_URL = 'http://192.168.2.102:81';
-
+const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 
 const axiosConfig = axios.create({
     baseURL: BASE_API_URL,
     headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        'Accept': 'application/json'
     },
-
-    // // add this for https request
-    //     httpsAgent: new https.Agent({
-    //         rejectUnauthorized: false
-    //     }),
-
+    httpsAgent: new https.Agent({
+        rejectUnauthorized: false
+    }),
 });
 
 
-export default axiosConfig;
+let authToken = '';
 
+export const setAuthToken = (token: string) => {
+    authToken = token;
+};
+
+
+
+axiosConfig.interceptors.request.use(async (config) => {
+    const session: any = await getSession();
+    const clientToken = session?.myToken;
+
+
+    if (authToken || clientToken) {
+
+        config.headers!['Authorization'] = `Bearer ${clientToken ?? authToken}`;
+    }
+
+
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+});
+
+export default axiosConfig;

@@ -1,6 +1,6 @@
 
 import Head from 'next/head'
-import { Router } from 'next/router'
+import { Router, useRouter } from 'next/router'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import 'react-toastify/dist/ReactToastify.css';
@@ -50,6 +50,7 @@ import 'src/iconify-bundle/icons-bundle-react'
 import '../../styles/globals.css'
 import queryClientSetup from 'src/utils/reactQuery/querySetup'
 import NextAuthProvider from 'src/context/NextAuthProvider'
+import React from 'react';
 
 
 // ** Extend App Props with Emotion
@@ -86,10 +87,14 @@ const App = (props: ExtendedAppProps) => {
         Component.getLayout ?? (page => <UserLayout contentHeightFixed={contentHeightFixed}>{page}</UserLayout>)
     const setConfig = Component.setConfig ?? undefined
 
+    const router = useRouter();
+
+    const queryClient = React.useMemo(() => queryClientSetup(router), [router])
+
 
     return (
         <NextAuthProvider>
-            <QueryClientProvider client={queryClientSetup}>
+            <QueryClientProvider client={queryClient}>
                 <CacheProvider value={emotionCache}>
                     <Head>
                         <title>
