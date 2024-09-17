@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import jalaliMoment from 'jalali-moment'
 
-// convert english digits into persian
+
 export function convertPersianToGregorian(persianDate: any) {
     if (persianDate) {
         // Map Persian digits to Latin digits
@@ -34,7 +34,6 @@ export function convertPersianToGregorian(persianDate: any) {
     }
 }
 
-// convert persian digits into english
 export function convertPersianToEnglishDigits(text: any) {
     if (text) {
         // Define a map object for mapping Persian and Arabic digits to English digits
@@ -68,7 +67,6 @@ export function convertPersianToEnglishDigits(text: any) {
     }
 }
 
-// get the current year with jalali format 
 export function getCurrentJalaliYear() {
     // Get the current date
     const currentDate = new Date();
@@ -82,7 +80,6 @@ export function getCurrentJalaliYear() {
     return jalaliYear;
 }
 
-// convert date
 export function dateConverter(date: any): string | null {
     // Check if the date is already in Jalali format
     const isJalali = /^1[3-9]\d{2}\/\d{1,2}\/\d{1,2}$/.test(date);
@@ -101,8 +98,7 @@ export function dateConverter(date: any): string | null {
     return formattedJalaliDate;
 }
 
-// convert date time 
-export function dateTimeConverter(dateTime: string): string | null {
+export function dateTimeConverter(dateTime: any): string | null {
 
     if (!dateTime) {
         return null
